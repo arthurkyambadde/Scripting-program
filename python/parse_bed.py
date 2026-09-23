@@ -28,8 +28,6 @@ for line in open(bed_file):
     else:
         counts[chromosome] = counts[chromosome]+1 
 bed_file.close() 
-
-    
     
     
 
