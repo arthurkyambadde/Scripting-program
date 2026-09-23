@@ -11,9 +11,14 @@
   
 #add a comment
 counts={}
+total_read_quality={}
+
 bed_file=input("Please enter the name of the bed file: ")
 
-for line in open(bed_file):
+working_bedfile = open(bed_file ,"r")
+
+
+for line in working_bedfile:
     line=line.strip()
     
     if line.startswith("#"): 
@@ -22,32 +27,18 @@ for line in open(bed_file):
     columns=line.split()
     
     chromosome=columns[0]
-    
+    read_quality = float(columns[3])
     if chromosome not in counts: 
         counts[chromosome]=1
+        total_read_quality[chromosome] =  read_quality
+        
     else:
         counts[chromosome] = counts[chromosome]+1 
-bed_file.close() 
-    
-    
+        
+        total_read_quality[chromosome] = total_read_quality[chromosome] + read_quality
 
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
+    
+working_bedfile.close() 
   
   
   
@@ -59,10 +50,36 @@ while True:
     option=input("Please select an option from the menu: ").upper()
     if option=="R":
         sorted_chromosomes = sorted(counts,key=lambda chr:counts[chr], reverse=True)
-        print("columns", sorted_chromosomes)
+        chr_heading="Chr "
+        count_heading="count"
+        output=f"{chr_heading}    {count_heading}\n"
+        print(output)
+        
+        
+     
+        for each_chromosome in sorted_chromosomes:
+            output = output + f"{each_chromosome}    {str(counts[each_chromosome])}\n"
+            
+        output_file = open("./read_counts.txt", "w")  
+        output_file.write(output)
+        output_file.close()
+        
+        
+        
+        print(output)
+        # print("columns", sorted_chromosomes)
+        
         
     elif option=="D":
-        print("D")
+        output = ""
+        for chromosome in counts:
+           average = total_read_quality[chromosome]/counts[chromosome]
+           output = output + f"{chromosome}   {average:.3f}\n"
+           print(output)
+        output_file = open("./average_counts.txt", "w")  
+        output_file.write(output)
+        output_file.close()
+        
     elif option=="X":
         print("You have exited the program")  
         break   
