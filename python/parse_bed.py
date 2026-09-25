@@ -60,7 +60,7 @@ while True:
         for each_chromosome in sorted_chromosomes:
             output = output + f"{each_chromosome}    {str(counts[each_chromosome])}\n"
             
-        output_file = open("./read_counts.txt", "w")  
+        output_file = open("./output/read_counts.txt", "w")  
         output_file.write(output)
         output_file.close()
         
@@ -76,7 +76,7 @@ while True:
            average = total_read_quality[chromosome]/counts[chromosome]
            output = output + f"{chromosome}   {average:.3f}\n"
            print(output)
-        output_file = open("./average_counts.txt", "w")  
+        output_file = open("./output/average_counts.txt", "w")  
         output_file.write(output)
         output_file.close()
         
