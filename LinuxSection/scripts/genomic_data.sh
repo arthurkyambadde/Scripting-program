@@ -1,11 +1,11 @@
 #!/bin/bash
 
 # download the zip file bla bla bla
-wget -P  ../data/raw https://github.com/kipkurui/Intro2Linux2019/raw/master/Data/genomic_data.zip
+# wget -P  ../data/raw https://github.com/kipkurui/Intro2Linux2019/raw/master/Data/genomic_data.zip
 
-#extract contents from zip file
+# #extract contents from zip file
 
-unzip ../data/raw/genomic_data.zip -d ../data/processed
+# unzip ../data/raw/genomic_data.zip -d ../data/processed
 
 #dnfdn cknvkd djbfjd
 echo "Number of files"
